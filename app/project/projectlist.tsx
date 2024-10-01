@@ -1,6 +1,16 @@
 "use client";
 import React, { useState, useRef, useEffect, RefObject } from "react";
-const characters = [
+
+interface Character {
+    id: number;
+    name: string;
+    level: number;
+    image: string;
+    selected: boolean;
+  }
+
+  
+const characters: Character[] = [
   { id: 1, name: 'Character 1', level: 30, image: 'https://placehold.co/100x100', selected: true },
   { id: 2, name: 'Character 2', level: 30, image: 'https://placehold.co/100x100', selected: false },
   { id: 3, name: 'Character 3', level: 30, image: 'https://placehold.co/100x100', selected: false },
@@ -16,35 +26,37 @@ const characters = [
   { id: 13, name: 'Character 13', level: 30, image: 'https://placehold.co/100x100', selected: false },
   { id: 14, name: 'Character 14', level: 30, image: 'https://placehold.co/100x100', selected: false },
 ];
+
 const CharacterSelection: React.FC = () => {
-  const [selectedCharacter, setSelectedCharacter] = useState(characters[0]);
-  const [visibleCharacters, setVisibleCharacters] = useState(characters.slice(0, 10)); // Initial characters to display
-  const [startIndex, setStartIndex] = useState(0); // Start index of the visible characters
-  const [endIndex, setEndIndex] = useState(10); // End index of the visible characters
-  const colRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
-  useEffect(() => {
-    colRefs.forEach((colRef) => {
-      handleInfiniteScroll(colRef);
-    });
-  }, []);
-  const handleInfiniteScroll = (colRef: RefObject<HTMLDivElement>) => {
-    const column = colRef.current;
-    if (column) {
-      const onScroll = () => {
-        const scrollTop = column.scrollTop;
-        const clientHeight = column.clientHeight;
-        const scrollHeight = column.scrollHeight;
-        if (scrollTop + clientHeight >= scrollHeight - 50) {
-          // Load more characters when the user scrolls to the bottom of the column
-          loadMoreCharacters();
-        }
-      };
-      column.addEventListener('scroll', onScroll);
-      return () => {
-        column.removeEventListener('scroll', onScroll);
-      };
-    }
-  };
+    const [selectedCharacter, setSelectedCharacter] = useState(characters[0]);
+    const [visibleCharacters, setVisibleCharacters] = useState(characters.slice(0, 10));
+    const [endIndex, setEndIndex] = useState(10);
+    const colRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
+  
+    const handleInfiniteScroll = (colRef: RefObject<HTMLDivElement>) => {
+      const column = colRef.current;
+      if (column) {
+        const onScroll = () => {
+          const scrollTop = column.scrollTop;
+          const clientHeight = column.clientHeight;
+          const scrollHeight = column.scrollHeight;
+          if (scrollTop + clientHeight >= scrollHeight - 50) {
+            loadMoreCharacters();
+          }
+        };
+        column.addEventListener('scroll', onScroll);
+        return () => {
+          column.removeEventListener('scroll', onScroll);
+        };
+      }
+    };
+  
+    useEffect(() => {
+      colRefs.forEach((colRef) => {
+        handleInfiniteScroll(colRef);
+      });
+    }, [colRefs]);
+  
   const loadMoreCharacters = () => {
     const nextChars = characters.slice(endIndex, endIndex + 10);
     if (nextChars.length > 0) {
@@ -52,7 +64,8 @@ const CharacterSelection: React.FC = () => {
       setEndIndex((prev) => prev + 10);
     }
   };
-  const renderCharacters = (characters: any[]) => {
+  
+  const renderCharacters = (characters: Character[]) => {
     return characters.map((character, index) => (
       <div
         key={character.id}
@@ -67,6 +80,9 @@ const CharacterSelection: React.FC = () => {
       </div>
     ));
   };
+  
+
+  
   return (
     <div className="flex flex-col items-center h-screen">
       <div className="flex w-full max-w-4xl h-full">
