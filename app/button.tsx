@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import styles from "./button.module.css";
 import SlidingDoor from "./door";
 import { useRouter } from 'next/navigation';
-import { Url } from "next/dist/shared/lib/router/router";
 
 const RedBlackBlocks = () => {
   const [isAnimating, setIsAnimating] = useState(false);
