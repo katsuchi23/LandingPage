@@ -1,0 +1,74 @@
+.doorContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0); /* Change this if you want a different background color */
+    z-index: 1000; /* Make sure it overlays other content */
+  }
+  
+  .door {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(99, 32, 32, 0); /* Color of the doors */
+    transition: transform 0.5s ease-in-out; /* Smooth transition for closing */
+  }
+  
+  .leftDoor {
+    left: -50%; /* Start fully out of view on the left */
+    transform-origin: left; /* Set the left door's origin */
+    background-image: url(./resource/leftdoor.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .rightDoor {
+    right: -50%; /* Start fully out of view on the right */
+    transform-origin: right; /* Set the right door's origin */
+    background-image: url(./resource/rightdoor.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .leftDoorOpen {
+    left: 0; /* Start fully out of view on the left */
+    transform-origin: left; /* Set the left door's origin */
+    background-image: url(./resource/leftdoor.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .rightDoorOpen {
+    right: 0; /* Start fully out of view on the right */
+    transform-origin: right; /* Set the right door's origin */
+    background-image: url(./resource/rightdoor.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .closing {
+    transform: translateX(100%); /* Move left door into view */
+  }
+  
+  .closing.rightDoor {
+    transform: translateX(-100%); /* Move right door into view */
+  }
+
+  .opening {
+    transform: translateX(-100%); /* Move left door into view */
+  }
+  
+  .opening.rightDoorOpen {
+    transform: translateX(100%); /* Move right door into view */
+  }
+  

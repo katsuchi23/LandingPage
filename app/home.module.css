@@ -1,0 +1,79 @@
+/* Apply styles to the whole page */
+
+  
+.backgroundGif {
+    background-image: url('./resource/bg.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    position: fixed; /* Keeps the background fixed */
+    z-index: -1; /* Keeps background behind other content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.maincontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    border:red;
+    z-index: 1;
+}
+
+.persona5button {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 24px;
+    color: white;
+    background-color: red; /* Primary red color */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s; /* Include box-shadow in transitions */
+    text-shadow: 3px 3px 0px black, -1px -1px 0px black; /* Bold black outline */
+  }
+  
+/* The shadow to give the button a 3D effect */
+.persona5button::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    right: -7px;
+    bottom: -7px;
+    background-color: rgb(0, 0, 0); /* Shadow color */
+    z-index: -1; /* Place behind the button */
+    transition: all 0.2s;
+}
+
+/* Hover effect to "pop" the button */
+.persona5button:hover {
+    transform: translate(-5px, -5px);
+}
+
+.persona5button:hover::before {
+    top: 10px;
+    left: 10px;
+    right: -10px;
+    bottom: -10px;
+}
+
+.button1 {
+    transform: rotate(-30deg);
+    top: 0;
+    left: 0;
+  }
+  
+  
+  
+  
