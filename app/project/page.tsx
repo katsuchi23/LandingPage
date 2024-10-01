@@ -1,6 +1,6 @@
 "use client"
-import { useEffect, useState } from 'react';
-import CharacterSelection from './projectlist';
+import { useState } from 'react';
+// import CharacterSelection from './projectlist';
 import SlidingDoor from './door';
 
 export default function Project() {
