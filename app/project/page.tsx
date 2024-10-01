@@ -13,7 +13,7 @@ export default function Project() {
 
     return (
         <div className='flex'>
-            <p>I haven't finished this page. Sorry</p>
+            <p>I have not finished this page</p>
             {/* <CharacterSelection /> */}
             {/* Render the page first then the animation play */}
 
